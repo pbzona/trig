@@ -1,4 +1,6 @@
-import { Point, drawPoint, drawText } from './util';
+import { Point, drawPoint, drawText, init } from './util';
+
+init();
 
 const A = new Point(0, 0);
 const B = new Point(90, 120);

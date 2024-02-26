@@ -24,11 +24,34 @@ export function Point(x, y) {
 */
 
 /**
+ * Setup for the canvas and context:
+ * - Moves origin to center
+ */
+export function init() {
+  const canvas = getTrigCanvas();
+  const offset = {
+    x: canvas.width / 2,
+    y: canvas.height / 2,
+  };
+
+  const ctx = getTrigContext();
+  ctx.translate(offset.x, offset.y);
+}
+
+/**
+ * Returns the trig canvas element
+ * @returns {HTMLCanvasElement}
+ */
+export function getTrigCanvas() {
+  return document.getElementById('trigonometry_canvas');
+}
+
+/**
  * Returns the context for the trig canvas
  * @returns {CanvasRenderingContext2D}
  */
 export function getTrigContext() {
-  return document.getElementById('trigonometry_canvas').getContext('2d');
+  return getTrigCanvas().getContext('2d');
 }
 
 /**
