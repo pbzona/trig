@@ -1,9 +1,9 @@
 import { getTrigContext, getTrigCanvas } from './util';
 
 export class Graph {
-  constructor() {
+  constructor(points = []) {
     this.ctx = getTrigContext();
-    this.canvas = this.ctx.canvas;
+    this.canvas = getTrigCanvas();
 
     this.offset = {
       x: this.canvas.width / 2,
@@ -11,6 +11,9 @@ export class Graph {
     };
 
     this.points = new Map();
+    if (points) {
+      this.addPoints(points);
+    }
 
     this.#init();
   }
@@ -18,9 +21,14 @@ export class Graph {
   #init() {
     this.ctx.translate(this.offset.x, this.offset.y);
     this.#drawCoordinateSystem();
+    this.#update();
+
+    if (this.points.size > 0) {
+      this.makeInteractive();
+    }
   }
 
-  #drawCoordinateSystem(offset) {
+  #drawCoordinateSystem() {
     this.ctx.beginPath();
     this.ctx.moveTo(-this.offset.x, 0);
     this.ctx.lineTo(this.canvas.width - this.offset.x, 0);
@@ -35,9 +43,30 @@ export class Graph {
     this.ctx.setLineDash([]);
   }
 
+  #update() {
+    this.ctx.clearRect(-this.offset.x, -this.offset.y, this.canvas.width, this.canvas.height);
+    this.#drawCoordinateSystem();
+
+    this.points.forEach(p => p.draw());
+  }
+
   addPoints(points) {
     for (const p of points) {
       this.points.set(p.label, p);
     }
+  }
+
+  makeInteractive() {
+    document.onmousemove = event => {
+      const B = this.points.get('B');
+      const C = this.points.get('C');
+
+      B.x = event.offsetX - this.offset.x;
+      B.y = event.offsetY - this.offset.y;
+
+      C.x = B.x;
+
+      this.#update();
+    };
   }
 }

@@ -2,7 +2,7 @@
  * Returns the trig canvas element
  * @returns {HTMLCanvasElement}
  */
-function getTrigCanvas() {
+export function getTrigCanvas() {
   return document.getElementById('trigonometry_canvas');
 }
 
