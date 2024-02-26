@@ -1,14 +1,14 @@
-import { Point, drawPoint, drawText, init } from './util';
+import { Graph } from './graph';
+import { Point } from './point';
 
-init();
+const graph = new Graph();
 
-const A = new Point(0, 0);
-const B = new Point(90, 120);
-const C = new Point(B.x, 0);
+const A = new Point(0, 0, 'A');
+const B = new Point(90, 120, 'B');
+const C = new Point(B.x, 0, 'C');
 
-drawPoint(A);
-drawText('A', A);
-drawPoint(B);
-drawText('B', B);
-drawPoint(C);
-drawText('C', C);
+A.draw();
+B.draw();
+C.draw();
+
+graph.addPoints([A, B, C]);
