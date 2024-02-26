@@ -36,13 +36,15 @@ export function init() {
 
   const ctx = getTrigContext();
   ctx.translate(offset.x, offset.y);
+
+  drawCoordinateSystem(offset);
 }
 
 /**
  * Returns the trig canvas element
  * @returns {HTMLCanvasElement}
  */
-export function getTrigCanvas() {
+function getTrigCanvas() {
   return document.getElementById('trigonometry_canvas');
 }
 
@@ -50,8 +52,22 @@ export function getTrigCanvas() {
  * Returns the context for the trig canvas
  * @returns {CanvasRenderingContext2D}
  */
-export function getTrigContext() {
+function getTrigContext() {
   return getTrigCanvas().getContext('2d');
+}
+
+/**
+ * Draw the x and y axes on the graph
+ * @param {Point} offset Point representing the offset from "real" 0, 0
+ */
+function drawCoordinateSystem(offset) {
+  const ctx = getTrigContext();
+  ctx.beginPath();
+  ctx.moveTo(-offset.x, 0);
+  ctx.lineTo(ctx.canvas.width - offset.x, 0);
+  ctx.moveTo(0, -offset.y);
+  ctx.lineTo(0, ctx.canvas.height - offset.y);
+  ctx.stroke();
 }
 
 /**
