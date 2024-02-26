@@ -1,7 +1,7 @@
 import { getTrigContext, getTrigCanvas } from './util';
 
 export class Graph {
-  constructor(points = []) {
+  constructor(points = [], lines = []) {
     this.ctx = getTrigContext();
     this.canvas = getTrigCanvas();
 
@@ -13,6 +13,11 @@ export class Graph {
     this.points = new Map();
     if (points) {
       this.addPoints(points);
+    }
+
+    this.lines = new Map();
+    if (lines) {
+      this.addLines(lines);
     }
 
     this.#init();
@@ -47,12 +52,19 @@ export class Graph {
     this.ctx.clearRect(-this.offset.x, -this.offset.y, this.canvas.width, this.canvas.height);
     this.#drawCoordinateSystem();
 
+    this.lines.forEach(l => l.draw());
     this.points.forEach(p => p.draw());
   }
 
   addPoints(points) {
     for (const p of points) {
       this.points.set(p.label, p);
+    }
+  }
+
+  addLines(lines) {
+    for (const l of lines) {
+      this.lines.set(l.label, l);
     }
   }
 
