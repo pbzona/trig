@@ -1,0 +1,25 @@
+body {
+  background-color: #333;
+  color: #ddd;
+  margin: 0;
+  overflow: hidden;
+}
+
+h1 {
+  margin: 40px auto;
+  text-align: center;
+  font-family: sans-serif;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+#trigonometry_canvas {
+  background-color: #bbb;
+
+  width: 500px;
+  height: 500px;
+  margin: 0 auto;
+}
