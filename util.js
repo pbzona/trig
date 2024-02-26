@@ -67,7 +67,13 @@ function drawCoordinateSystem(offset) {
   ctx.lineTo(ctx.canvas.width - offset.x, 0);
   ctx.moveTo(0, -offset.y);
   ctx.lineTo(0, ctx.canvas.height - offset.y);
+  ctx.setLineDash([4, 2]);
+  ctx.lineWidth = 1;
+  ctx.strokeStyle = '#888';
   ctx.stroke();
+
+  // Reset
+  ctx.setLineDash([]);
 }
 
 /**
