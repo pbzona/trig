@@ -4,9 +4,14 @@ export class Values {
   constructor(graph) {
     this.graph = graph;
 
+    this._theta = new Point(-graph.offset.x / 2, graph.offset.y * 0.4, 'theta');
     this._sin = new Point(-graph.offset.x / 2, graph.offset.y * 0.5, 'sin');
     this._cos = new Point(-graph.offset.x / 2, graph.offset.y * 0.6, 'cos');
     this._tan = new Point(-graph.offset.x / 2, graph.offset.y * 0.7, 'tan');
+  }
+
+  set theta(val) {
+    this._theta.label = `θ = ${this.#formatValue(val, 2)}`;
   }
 
   set sin(val) {
@@ -21,11 +26,12 @@ export class Values {
     this._tan.label = `tan θ = a/b = ${this.#formatValue(val)}`;
   }
 
-  #formatValue(val) {
-    return parseFloat(val).toFixed(5);
+  #formatValue(val, decimalPlaces = 4) {
+    return parseFloat(val).toFixed(decimalPlaces);
   }
 
   draw() {
+    this._theta.drawText();
     this._sin.drawText();
     this._cos.drawText();
     this._tan.drawText();

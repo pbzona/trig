@@ -60,6 +60,7 @@ export class Graph {
     this.values.sin = a / c;
     this.values.cos = b / c;
     this.values.tan = a / b;
+    this.values.theta = (Math.asin(a / c) * 180) / Math.PI;
 
     this.ctx.clearRect(-this.offset.x, -this.offset.y, this.canvas.width, this.canvas.height);
     this.#drawCoordinateSystem();
