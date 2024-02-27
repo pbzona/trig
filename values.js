@@ -10,15 +10,19 @@ export class Values {
   }
 
   set sin(val) {
-    this._sin.label = `sin θ = a/c = ${parseFloat(val).toFixed(5)}`;
+    this._sin.label = `sin θ = a/c = ${this.#formatValue(val)}`;
   }
 
   set cos(val) {
-    this._cos.label = `cos θ = b/c = ${parseFloat(val).toFixed(5)}`;
+    this._cos.label = `cos θ = b/c = ${this.#formatValue(val)}`;
   }
 
   set tan(val) {
-    this._tan.label = `tan θ = a/b = ${parseFloat(val).toFixed(5)}`;
+    this._tan.label = `tan θ = a/b = ${this.#formatValue(val)}`;
+  }
+
+  #formatValue(val) {
+    return parseFloat(val).toFixed(5);
   }
 
   draw() {
