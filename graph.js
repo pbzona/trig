@@ -1,3 +1,4 @@
+import { Values } from './values';
 import { getTrigContext, getTrigCanvas } from './util';
 
 export class Graph {
@@ -20,6 +21,7 @@ export class Graph {
       this.addLines(lines);
     }
 
+    this.values = new Values(this);
     this.angle = angle;
 
     this.#init();
@@ -55,11 +57,16 @@ export class Graph {
     const b = this.lines.get('b').getLength();
     const c = this.lines.get('c').getLength();
 
+    this.values.sin = a / c;
+    this.values.cos = b / c;
+    this.values.tan = a / b;
+
     this.ctx.clearRect(-this.offset.x, -this.offset.y, this.canvas.width, this.canvas.height);
     this.#drawCoordinateSystem();
 
     this.lines.forEach(l => l.draw());
     this.angle.drawText();
+    this.values.draw();
   }
 
   addPoints(points) {
