@@ -12,13 +12,13 @@ export class Point {
   }
 
   draw() {
-    this.#drawPoint();
+    this.drawPoint();
     if (this.label) {
-      this.#drawText();
+      this.drawText();
     }
   }
 
-  #drawPoint() {
+  drawPoint() {
     const ctx = getTrigContext();
 
     ctx.beginPath();
@@ -27,7 +27,7 @@ export class Point {
     ctx.fill();
   }
 
-  #drawText() {
+  drawText() {
     const ctx = getTrigContext();
 
     ctx.beginPath();
