@@ -49,15 +49,14 @@ export class Graph {
   }
 
   #update() {
-    const c = this.lines.get('AB').getLength();
-    const a = this.lines.get('BC').getLength();
-    const b = this.lines.get('AC').getLength();
+    const a = this.lines.get('a').getLength();
+    const b = this.lines.get('b').getLength();
+    const c = this.lines.get('c').getLength();
 
     this.ctx.clearRect(-this.offset.x, -this.offset.y, this.canvas.width, this.canvas.height);
     this.#drawCoordinateSystem();
 
     this.lines.forEach(l => l.draw());
-    this.points.forEach(p => p.draw());
   }
 
   addPoints(points) {

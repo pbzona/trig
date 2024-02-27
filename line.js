@@ -16,11 +16,7 @@ export class Line {
   }
 
   getMidpoint() {
-    this.midpoint = new Point(
-      (this.p1.x + this.p2.x) / 2,
-      (this.p1.y + this.p2.y) / 2,
-      this.getLength()
-    );
+    this.midpoint = new Point((this.p1.x + this.p2.x) / 2, (this.p1.y + this.p2.y) / 2, this.label);
     return this.midpoint;
   }
 
@@ -28,7 +24,10 @@ export class Line {
     this.drawLine();
     if (this.label) {
       this.getMidpoint();
-      this.midpoint.textColor = 'cyan';
+      this.midpoint.styles.textColor = 'black';
+      this.midpoint.styles.strokeStyle = '#bbb';
+      this.midpoint.styles.lineWidth = 7;
+      this.midpoint.styles.fontSize = 18;
       this.midpoint.drawText();
     }
   }
@@ -42,16 +41,5 @@ export class Line {
     ctx.moveTo(this.p1.x, this.p1.y);
     ctx.lineTo(this.p2.x, this.p2.y);
     ctx.stroke();
-  }
-
-  drawText() {
-    const ctx = getTrigContext();
-
-    ctx.beginPath();
-    ctx.fillStyle = this.textColor;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.font = 'normal 15px Courier';
-    ctx.fillText(this.label, this.x, this.y);
   }
 }
