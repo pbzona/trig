@@ -1,7 +1,7 @@
 import { getTrigContext, getTrigCanvas } from './util';
 
 export class Graph {
-  constructor(points = [], lines = []) {
+  constructor({ points = [], lines = [], angle }) {
     this.ctx = getTrigContext();
     this.canvas = getTrigCanvas();
 
@@ -19,6 +19,8 @@ export class Graph {
     if (lines) {
       this.addLines(lines);
     }
+
+    this.angle = angle;
 
     this.#init();
   }
@@ -57,6 +59,7 @@ export class Graph {
     this.#drawCoordinateSystem();
 
     this.lines.forEach(l => l.draw());
+    this.angle.drawText();
   }
 
   addPoints(points) {

@@ -10,4 +10,10 @@ const ab = new Line(A, B, 'c');
 const ac = new Line(A, C, 'b');
 const bc = new Line(B, C, 'a');
 
-const graph = new Graph([A, B, C], [ab, ac, bc]);
+const entities = {
+  points: [A, B, C],
+  lines: [ab, ac, bc],
+  angle: new Point(0, 0, 'θ'),
+};
+
+const graph = new Graph(entities);
